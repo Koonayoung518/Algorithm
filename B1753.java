@@ -8,13 +8,13 @@ import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 class Node implements Comparable<Node>{
-    int idx, w;
-    Node(int idx, int w){
+    int idx, weigt;
+    Node(int idx, int weigt){
         this.idx=idx;
-        this.w=w;
+        this.weigt=weight;
     }
     public int compareTo(Node n) {
-        return this.w-n.w;
+        return this.weigt-n.weigt;
     }
 }
 public class B1753 {
@@ -32,13 +32,13 @@ public class B1753 {
         while(!queue.isEmpty()){
             Node now = queue.poll();
             //더 큰 가중치로 도착했을 경우 패스
-            if(now.w > dist[now.idx]) continue;
+            if(now.weigt > dist[now.idx]) continue;
             //현재 위치에 연결된 간선 탐색
             for(int i=0; i<list[now.idx].size(); i++){
                 Node next = list[now.idx].get(i);
                 //비용이 더 작을 때 갱신하고 큐에 넣기
-                if(dist[next.idx] > now.w + next.w){
-                    dist[next.idx] = now.w + next.w;
+                if(dist[next.idx] > now.weigt + next.weigt){
+                    dist[next.idx] = now.weigt + next.weigt;
                     queue.add(new Node(next.idx, dist[next.idx]));
                 }
             }
